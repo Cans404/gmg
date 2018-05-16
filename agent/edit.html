@@ -1,19 +1,47 @@
-<h1>Upload File</h1>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html">
+	<title>gms ops</title>
+</head>
 
-<form enctype="multipart/form-data" action="/upload/" method="post">
-<input type="file" name="uploadfile" />
-<input type="text" name="path" value="input the path for upload" />
-<input type="submit" value="upuload" />  
-</form>
+<script type="text/javascript">
+	function change(content){
+		var all = document.getElementById("all");
+		var divArray = all.getElementsByTagName("div");
+		for (var i=0;i<divArray.length;i++) {
+			if (divArray[i].id == content) {
+				divArray[i].style.display='';
+			}else {
+				divArray[i].style.display='none';
+			}
+		}
+	}
+</script>
 
-<h1>Command Editor</h1>
+<body>
+	<select style="width:300px" onChange="change(this.value)">
+		<option value="upload">批量上传文件</option>
+		<option value="exec">批量下发命令</option>
+	</select>
 
-<form action="/exec/" method="POST">
-	<div>
-		<textarea name="body" rows="20" cols="80">input the command to run...</textarea>
+	<div id=all>
+		<div id=upload>
+			<h1>Upload File</h1>
+			<form enctype="multipart/form-data" action="/upload/" method="post">
+				<input type="file" name="uploadfile" />
+				<input type="text" name="path" value="input the path for upload" />
+				<input type="submit" value="upuload" />  
+			</form>
+		</div>
+
+		<div id=exec style="display:none ">
+			<h1>Command Editor</h1>
+			<form action="/exec/" method="POST">
+				<textarea name="body" rows="20" cols="80">input the command to run...</textarea>
+				<br>
+				<input type="submit" value="RUN">
+			</form>
+		</div>
 	</div>
-	<br>
-	<div>
-		<input type="submit" value="RUN">
-	</div>
-</form>
+</body>
+</html> 
