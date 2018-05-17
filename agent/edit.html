@@ -1,47 +1,38 @@
 <html>
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html">
-	<title>gms ops</title>
+    <meta http-equiv="Content-Type" content="text/html">
+    <title>gms ops</title>
+    <script type="text/javascript" src='/web/ajax.js'></script>
+    <script type="text/javascript" src='/web/tools.js'></script>
 </head>
 
-<script type="text/javascript">
-	function change(content){
-		var all = document.getElementById("all");
-		var divArray = all.getElementsByTagName("div");
-		for (var i=0;i<divArray.length;i++) {
-			if (divArray[i].id == content) {
-				divArray[i].style.display='';
-			}else {
-				divArray[i].style.display='none';
-			}
-		}
-	}
-</script>
-
 <body>
-	<select style="width:300px" onChange="change(this.value)">
-		<option value="upload">批量上传文件</option>
-		<option value="exec">批量下发命令</option>
-	</select>
-
-	<div id=all>
-		<div id=upload>
-			<h1>Upload File</h1>
-			<form enctype="multipart/form-data" action="/upload/" method="post">
-				<input type="file" name="uploadfile" />
-				<input type="text" name="path" value="input the path for upload" />
-				<input type="submit" value="upuload" />  
-			</form>
-		</div>
-
-		<div id=exec style="display:none ">
-			<h1>Command Editor</h1>
-			<form action="/exec/" method="POST">
-				<textarea name="body" rows="20" cols="80">input the command to run...</textarea>
-				<br>
-				<input type="submit" value="RUN">
-			</form>
-		</div>
-	</div>
+    <select style="width:300px" onchange="displaySW(this.value)">
+        <option value="exec">命令批量下发</option>
+        <option value="upload">文件批量上传</option>
+    </select>
+    <div id=exec class="bulk">
+        <h1>Command Editor</h1>
+        <form>
+            <textarea name="body" rows="20" cols="80">input the command to run...</textarea>
+            <br>
+            <button type="button" onclick="loadXMLDoc()">run</button>
+        </form>
+    </div>
+    <div id=all>
+        <div id=upload class="bulk" style="display:none">
+            <h1>Upload File</h1>
+            <form enctype="multipart/form-data" action="/upload/" method="post">
+                <input type="file" name="uploadfile" />
+                <input type="text" name="path" value="input the path for upload" />
+                <input type="submit" value="upload" />
+            </form>
+        </div>
+    </div>
+    <div name="out">
+        <textarea id="output" rows="20" cols="80" readonly="readonly"></textarea>
+    </div>
 </body>
-</html> 
+
+</html>

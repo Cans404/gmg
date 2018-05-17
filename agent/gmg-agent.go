@@ -44,6 +44,10 @@ func main() {
 	http.HandleFunc("/edit/", editHandler)
 	http.HandleFunc("/exec/", execHandler)
 	http.HandleFunc("/upload/", uploadHandler)
+	
+	files := http.FileServer(http.Dir("js"))
+	http.Handle("/web/", http.StripPrefix("/web/", files))
+
 	http.ListenAndServe(":12580", nil)
 }
 
