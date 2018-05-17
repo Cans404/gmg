@@ -3,7 +3,10 @@ function loadXMLDoc() {
 	var fd = new FormData();
 	var args = document.getElementById("body").value;
 
-	alert("the command to be executed:\n" + args);
+	var msg = "the command to be executed:\n" + args
+	if (confirm(msg)==false) {
+		return;
+	}
 
 	fd.append("body", args);
 
