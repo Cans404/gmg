@@ -12,15 +12,15 @@
         <option value="exec">命令批量下发</option>
         <option value="upload">文件批量上传</option>
     </select>
-    <div id=exec class="bulk">
-        <h1>Command Editor</h1>
-        <form>
-            <textarea name="body" rows="20" cols="80">input the command to run...</textarea>
-            <br>
-            <button type="button" onclick="loadXMLDoc()">run</button>
-        </form>
-    </div>
     <div id=all>
+        <div id=exec class="bulk">
+            <h1>Command Editor</h1>
+            <form>
+                <textarea name="body" id="body" rows="20" cols="80">input the command to run...</textarea>
+                <br>
+                <button type="button" onclick="loadXMLDoc()">run</button>
+            </form>
+        </div>
         <div id=upload class="bulk" style="display:none">
             <h1>Upload File</h1>
             <form enctype="multipart/form-data" action="/upload/" method="post">
